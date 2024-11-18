@@ -1,0 +1,16 @@
+{
+    "name": "viking311/costs",
+    "type": "project",
+    "autoload": {
+        "psr-4": {
+            "Viking311\\Costs\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "Viktor Rikhert",
+            "email": "viking311@gmail.com"
+        }
+    ],
+    "require": {}
+}
