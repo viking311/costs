@@ -12,5 +12,7 @@
             "email": "viking311@gmail.com"
         }
     ],
-    "require": {}
+    "require": {
+        "slim/slim": "^4.14"
+    }
 }

@@ -1,19 +1,5 @@
 version: '3'
 services:
-  queue:
-    image: rabbitmq:3-management
-    container_name: rabbit
-    ports:
-      - "8030:15672"
-    networks:
-      - app-network
-  redis:
-    image: redis:7.2.3
-    container_name: redis
-    ports:
-      - "63790:6379"
-    networks:
-      - app-network
   php:
     build:
       context: docker/php-fpm
