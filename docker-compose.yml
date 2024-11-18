@@ -1,5 +1,18 @@
-version: '3'
 services:
+  telegram-bot-api:
+    image: aiogram/telegram-bot-api:latest
+    environment:
+      TELEGRAM_API_ID: "20065413"
+      TELEGRAM_API_HASH: "db6784784f0c6974d0f57d5ae7866e25"
+      TELEGRAM_LOCAL: 1
+      TELEGRAM_STAT: 1
+    volumes:
+      - telegram-bot-api-data:/var/lib/telegram-bot-api
+    ports:
+      - "8081:8081"
+      - "8082:8082"
+    networks:
+      - app-network
   php:
     build:
       context: docker/php-fpm
@@ -18,7 +31,7 @@ services:
     image: ws
     container_name: web
     ports:
-      - "80:80"
+      - "8083:80"
     volumes:
       - ./code:/data/mysite.local
       - php_socket:/var/run/php
@@ -31,3 +44,4 @@ networks:
     driver: bridge
 volumes:
   php_socket:
+  telegram-bot-api-data:
