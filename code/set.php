@@ -1,12 +1,17 @@
 <?php
 
 declare(strict_types=1);
-$token = "7866534109:AAEm2hMQ8iDpwlX_OtcDbA0bKK57Vedpn-w";
+
+use Viking311\Costs\Infrastructure\Config\Config;
+
+require __DIR__ . '/vendor/autoload.php';
+
+$config = new Config();
 
 $getQuery = array(
-    "url" => "http://localhost/telegram/hook",
+    "url" => $config->hookUrl,
 );
-$ch = curl_init("http://localhost:8081/bot". $token ."/setWebhook?" . http_build_query($getQuery));
+$ch = curl_init($config->telegramBotApiUrl ."/bot". $config->telegramBotToken ."/setWebhook?" . http_build_query($getQuery));
 curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
 curl_setopt($ch, CURLOPT_HEADER, false);
 

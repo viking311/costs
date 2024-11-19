@@ -16,6 +16,7 @@
         "slim/slim": "^4.14",
         "guzzlehttp/psr7": "^2.7",
         "ext-curl": "*",
-        "irazasyed/telegram-bot-sdk": "^3.14"
+        "irazasyed/telegram-bot-sdk": "^3.14",
+        "ext-pdo": "*"
     }
 }
