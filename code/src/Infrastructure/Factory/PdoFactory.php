@@ -17,12 +17,12 @@ class PdoFactory
             $config = new Config();
 
             $dsn = sprintf(
-                'pgsql:host=%s;port=%s;dbname=%s;user=%s;password=%s',
-                $config->host,
-                $config->port,
+                $config->dbConnection . ':host=%s;port=%s;dbname=%s;user=%s;password=%s',
+                $config->dbHost,
+                $config->dbPort,
                 $config->dbName,
-                $config->user,
-                $config->password,
+                $config->dbUser,
+                $config->dbPassword,
             );
 
             self::$pdo = new PDO($dsn);

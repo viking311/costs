@@ -8,37 +8,64 @@ use DateMalformedStringException;
 use DateTimeImmutable;
 use Telegram\Bot\Actions;
 use Telegram\Bot\Commands\Command;
+use Viking311\Costs\Application\UseCase\AddCost\AddCostRequest;
+use Viking311\Costs\Application\UseCase\AddCost\AddCostUseCase;
 
 class AddCoastCommand extends Command
 {
-
     protected string $name = 'add_cost';
     protected array $aliases = ['cost'];
     protected string $description = 'Add new cost';
-    protected string $pattern = '{costData}';
+//    protected string $pattern = '{costData} {costTime}
+//    {amount}
+//    {comment}';
+
+    public function __construct(
+        private AddCostUseCase $addCostUseCase
+    ) {
+    }
 
     /**
      * @inheritDoc
      */
     public function handle(): void
     {
-        $costData = $this->argument('costData', '');
-        $costArr = explode("\n", $costData);
-        if (count($costArr) != 3) {
-            $this->replyWithMessage(['text' => 'incorrect format' ]);
+        $text = $this->getUpdate()->getMessage()->text;
+        $costArr = explode("\n", $text);
+
+        if (count($costArr) != 4) {
+            $this->replyWithMessage(['text' => 'incorrect data format.']);
         }
 
         try {
-            $date = new DateTimeImmutable($costArr[0]);
-        } catch (\DateMalformedStringException) {
-            $date = new DateTimeImmutable();
-        }
+            $date = new DateTimeImmutable($costArr[1]);
+            $amount = (float) $costArr[2];
+            $comment = $costArr[3];
+            $username = $this->getUpdate()->getMessage()->from->username;
+            $chatId = (int) $this->getUpdate()->getChat()->id;
 
-        $amount = $costArr[1];
-        $comment = $costArr[2];
+            $request = new AddCostRequest(
+                $username,
+                $chatId,
+                $date,
+                $amount,
+                $comment
+            );
+            ($this->addCostUseCase)($request);
+        } catch (DateMalformedStringException) {
+            $this->replyWithMessage([
+                'text' => 'Date must be in format "YYYY-mm-dd HH:mm"'
+            ]);
+            return;
+        } catch (\Throwable) {
+            $this->replyWithMessage([
+                'text' => "Something wrong. Try again later."
+            ]);
+            return;
+        }
 
         $this->replyWithChatAction(['action' => Actions::TYPING]);
 
-//        $this->replyWithMessage(['text' => "dt: {$date->format()} \n am: $amount \n com: $comment" ]);
+        $this->replyWithMessage(['text' => "Saved" ]);
     }
 }

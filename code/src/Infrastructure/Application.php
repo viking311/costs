@@ -25,8 +25,8 @@ class Application
                 $telegram = TelegramFactory::createInstance();
                 $update = $telegram->commandsHandler(true);
                 file_put_contents('/tmp/test.txt', var_export($update, true));
-            } catch (Throwable) {
-
+            } catch (Throwable $e) {
+                //TODO добавить тут логирование
             }
             return $response;
         });

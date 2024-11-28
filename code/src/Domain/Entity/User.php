@@ -11,7 +11,8 @@ class User
 {
     public function __construct(
         private UserName $userName,
-        private ChatId $chatId
+        private ChatId $chatId,
+        private ?int  $id = null
     )
     {
     }
@@ -24,5 +25,15 @@ class User
     public function getChatId(): ChatId
     {
         return $this->chatId;
+    }
+
+    public function getId(): ?int
+    {
+        return $this->id;
+    }
+
+    public function setId(int $id)
+    {
+        $this->id = $id;
     }
 }
