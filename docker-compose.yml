@@ -1,17 +1,23 @@
-version: '3'
 services:
-  queue:
-    image: rabbitmq:3-management
-    container_name: rabbit
+  db:
+    image: postgres:16.4
+    container_name: postgres_db
+    env_file:
+      - .env
     ports:
-      - "8030:15672"
+      - "54320:5432"
     networks:
       - app-network
-  redis:
-    image: redis:7.2.3
-    container_name: redis
+  telegram-bot-api:
+    image: aiogram/telegram-bot-api:latest
+    container_name: tg_bot_api
+    env_file:
+      - .env
+    volumes:
+      - telegram-bot-api-data:/var/lib/telegram-bot-api
     ports:
-      - "63790:6379"
+      - "8081:8081"
+      - "8082:8082"
     networks:
       - app-network
   php:
@@ -20,6 +26,8 @@ services:
       dockerfile: Dockerfile
     image: php_app
     container_name: app
+    env_file:
+      - .env
     volumes:
       - ./code:/data/mysite.local
       - php_socket:/var/run/php
@@ -45,3 +53,4 @@ networks:
     driver: bridge
 volumes:
   php_socket:
+  telegram-bot-api-data:

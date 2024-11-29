@@ -2,6 +2,9 @@
 
 declare(strict_types=1);
 
+use Viking311\Costs\Infrastructure\Application;
+
 require 'vendor/autoload.php';
 
-phpinfo();
+$app = new Application();
+$app->run();
