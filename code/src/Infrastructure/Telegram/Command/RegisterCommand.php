@@ -16,7 +16,7 @@ class RegisterCommand extends Command
     /** @var array|string[]  */
     protected array $aliases = ['join'];
     /** @var string  */
-    protected string $description = 'Register user in bot';
+    protected string $description = "Register user in bot without it you can't save your costs\n";
 
     /**
      * @param RegisterUserUseCase $registerUserUseCase

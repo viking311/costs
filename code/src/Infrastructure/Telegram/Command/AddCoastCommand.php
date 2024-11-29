@@ -16,7 +16,7 @@ class AddCoastCommand extends Command
 {
     protected string $name = 'add_cost';
     protected array $aliases = ['cost'];
-    protected string $description = "Add new cost.\nExample of message:\n /add_cost\n 2014-11-25 10:15\n10.5\nmy cost comment";
+    protected string $description = "Add new cost.\nExample of message:\n /add_cost\n 2014-11-25 10:15\n10.5\nmy cost comment\n";
 
     public function __construct(
         private AddCostUseCase $addCostUseCase

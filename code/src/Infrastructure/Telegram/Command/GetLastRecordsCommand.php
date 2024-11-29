@@ -14,7 +14,7 @@ class GetLastRecordsCommand extends Command
     /** @var string  */
     protected string $name = 'last_costs';
     /** @var string  */
-    protected string $description = "Return N last costs. Example of message:\n/last_costs\n 10";
+    protected string $description = "Return N last costs.\nExample of message:\n/last_costs\n 10\n";
 
     /**
      * @param GetLastCostsUseCase $costsUseCase

@@ -14,7 +14,7 @@ class StartCommand extends Command
     /** @var array|string[]  */
     protected array $aliases = ['help',];
     /** @var string  */
-    protected string $description = 'Start Command to get you information about exists commands';
+    protected string $description = "Start Command to get you information about exists commands\n";
 
     /**
      * @return void
@@ -24,7 +24,7 @@ class StartCommand extends Command
         $username = $this->getUpdate()->getMessage()->from->username;
 
         $this->replyWithMessage([
-            'text' => "Hello $username! Welcome to our bot, Here are our available commands:"
+            'text' => "Hello $username!\nWelcome to our bot!\nHere are our available commands:"
         ]);
 
         $this->replyWithChatAction(['action' => Actions::TYPING]);
