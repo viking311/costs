@@ -11,7 +11,9 @@ $config = new Config();
 $getQuery = array(
     "url" => $config->hookUrl,
 );
-$ch = curl_init($config->telegramBotApiUrl ."/bot". $config->telegramBotToken ."/setWebhook?" . http_build_query($getQuery));
+
+$ch = curl_init($config->telegramBotApiUrl . $config->telegramBotToken ."/setWebhook?" . http_build_query($getQuery));
+
 curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
 curl_setopt($ch, CURLOPT_HEADER, false);
 
