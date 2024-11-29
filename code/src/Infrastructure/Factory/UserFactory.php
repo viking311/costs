@@ -11,6 +11,11 @@ use Viking311\Costs\Domain\ValueObject\UserName;
 
 class UserFactory implements UserFactoryInterface
 {
+    /**
+     * @param string $userName
+     * @param int $chatId
+     * @return User
+     */
     public function create(string $userName, int $chatId): User
     {
         return new User(

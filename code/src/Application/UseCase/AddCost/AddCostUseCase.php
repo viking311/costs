@@ -9,16 +9,23 @@ use Viking311\Costs\Domain\Factory\CostFactoryInterface;
 use Viking311\Costs\Domain\Repository\CostRepositoryInterface;
 use Viking311\Costs\Domain\Repository\UserRepositoryInterface;
 
-class AddCostUseCase
+readonly class AddCostUseCase
 {
+    /**
+     * @param UserRepositoryInterface $userRepository
+     * @param CostFactoryInterface $costFactory
+     * @param CostRepositoryInterface $costRepository
+     */
     public function __construct(
         private UserRepositoryInterface $userRepository,
-        private CostFactoryInterface $costFactory,
+        private CostFactoryInterface    $costFactory,
         private CostRepositoryInterface $costRepository
     ) {
     }
 
     /**
+     * @param AddCostRequest $request
+     * @return void
      * @throws Exception
      */
     public function __invoke(AddCostRequest $request): void

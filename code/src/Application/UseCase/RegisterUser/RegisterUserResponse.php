@@ -4,10 +4,13 @@ declare(strict_types=1);
 
 namespace Viking311\Costs\Application\UseCase\RegisterUser;
 
-class RegisterUserResponse
+readonly class RegisterUserResponse
 {
+    /**
+     * @param int $id
+     */
     public function __construct(
-        public readonly int $id
+        public int $id
     ) {
     }
 }

@@ -8,6 +8,7 @@ use DateMalformedStringException;
 use DateTimeImmutable;
 use Telegram\Bot\Actions;
 use Telegram\Bot\Commands\Command;
+use Throwable;
 use Viking311\Costs\Application\UseCase\AddCost\AddCostRequest;
 use Viking311\Costs\Application\UseCase\AddCost\AddCostUseCase;
 
@@ -15,10 +16,7 @@ class AddCoastCommand extends Command
 {
     protected string $name = 'add_cost';
     protected array $aliases = ['cost'];
-    protected string $description = 'Add new cost';
-//    protected string $pattern = '{costData} {costTime}
-//    {amount}
-//    {comment}';
+    protected string $description = "Add new cost.\nExample of message:\n /add_cost\n 2014-11-25 10:15\n10.5\nmy cost comment";
 
     public function __construct(
         private AddCostUseCase $addCostUseCase
@@ -57,7 +55,7 @@ class AddCoastCommand extends Command
                 'text' => 'Date must be in format "YYYY-mm-dd HH:mm"'
             ]);
             return;
-        } catch (\Throwable) {
+        } catch (Throwable) {
             $this->replyWithMessage([
                 'text' => "Something wrong. Try again later."
             ]);

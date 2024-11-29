@@ -10,6 +10,13 @@ use Viking311\Costs\Domain\ValueObject\CostDate;
 
 class Cost
 {
+    /**
+     * @param int $userId
+     * @param CostDate $costDate
+     * @param Amount $amount
+     * @param Comment $comment
+     * @param int|null $id
+     */
     public function __construct(
         private int $userId,
         private CostDate $costDate,
@@ -19,31 +26,50 @@ class Cost
     ) {
     }
 
+    /**
+     * @return int
+     */
     public function getUserId(): int
     {
         return $this->userId;
     }
 
+    /**
+     * @return CostDate
+     */
     public function getCostDate(): CostDate
     {
         return $this->costDate;
     }
 
+    /**
+     * @return Amount
+     */
     public function getAmount(): Amount
     {
         return $this->amount;
     }
 
+    /**
+     * @return Comment
+     */
     public function getComment(): Comment
     {
         return $this->comment;
     }
 
+    /**
+     * @return int|null
+     */
     public function getId(): ?int
     {
         return $this->id;
     }
 
+    /**
+     * @param int $id
+     * @return void
+     */
     public function setId(int $id): void
     {
         $this->id = $id;

@@ -44,8 +44,8 @@ class TelegramFactory
         $telegram->addCommand($addCostCommand);
 
         $lastCostsUseCase = GetLastCostsUseCaseFactory::create();
-        $lastCostsComand = new GetLastRecordsCommand($lastCostsUseCase);
-        $telegram->addCommand($lastCostsComand);
+        $lastCostsCommand = new GetLastRecordsCommand($lastCostsUseCase);
+        $telegram->addCommand($lastCostsCommand);
 
         return $telegram;
     }

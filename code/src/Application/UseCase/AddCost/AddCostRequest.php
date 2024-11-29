@@ -6,14 +6,21 @@ namespace Viking311\Costs\Application\UseCase\AddCost;
 
 use DateTimeImmutable;
 
-class AddCostRequest
+readonly class AddCostRequest
 {
+    /**
+     * @param string $userName
+     * @param int $chatId
+     * @param DateTimeImmutable $costDate
+     * @param float $amount
+     * @param string $comment
+     */
     public function __construct(
-        public readonly string $userName,
-        public readonly int $chatId,
-        public readonly DateTimeImmutable $costDate,
-        public readonly float $amount,
-        public readonly string $comment
+        public string            $userName,
+        public int               $chatId,
+        public DateTimeImmutable $costDate,
+        public float             $amount,
+        public string            $comment
     ) {
     }
 }

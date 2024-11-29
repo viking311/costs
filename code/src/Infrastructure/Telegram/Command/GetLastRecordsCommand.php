@@ -5,25 +5,29 @@ declare(strict_types=1);
 namespace Viking311\Costs\Infrastructure\Telegram\Command;
 
 use Telegram\Bot\Commands\Command;
+use Throwable;
 use Viking311\Costs\Application\UseCase\GetLastCosts\GetLastCostRequest;
 use Viking311\Costs\Application\UseCase\GetLastCosts\GetLastCostsUseCase;
 
 class GetLastRecordsCommand extends Command
 {
+    /** @var string  */
     protected string $name = 'last_costs';
-    protected string $description = 'Return N lastCosts';
-
-    public function __construct(
-        private GetLastCostsUseCase $costsUseCase
-    )
-    {
-    }
-
+    /** @var string  */
+    protected string $description = "Return N last costs. Example of message:\n/last_costs\n 10";
 
     /**
-     * @inheritDoc
+     * @param GetLastCostsUseCase $costsUseCase
      */
-    public function handle()
+    public function __construct(
+        private readonly GetLastCostsUseCase $costsUseCase
+    ) {
+    }
+
+    /**
+     * @return void
+     */
+    public function handle(): void
     {
         $text = $this->getUpdate()->getMessage()->text;
         $costArr = explode("\n", $text);
@@ -42,7 +46,7 @@ class GetLastRecordsCommand extends Command
             $resText = '';
 
             foreach ($response->items as $item) {
-                $resText .= "Date: {$item->costDate}\nAmount: {$item->amount}\nYour comment: {$item->comment}\n\n\n";
+                $resText .= "Date: $item->costDate\nAmount: $item->amount\nYour comment: $item->comment\n\n\n";
             }
             if (empty($resText)) {
                 $resText  = 'You don\'t have any costs';
@@ -51,10 +55,9 @@ class GetLastRecordsCommand extends Command
                 'text' => $resText
             ]);
 
-        } catch (\Throwable $e) {
+        } catch (Throwable) {
             $this->replyWithMessage([
-                'text' => $e->getMessage()
-//                'text' => "Something wrong. Try again later."
+                'text' => "Something wrong. Try again later."
             ]);
             return;
         }

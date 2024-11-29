@@ -13,9 +13,20 @@ use Viking311\Costs\Domain\ValueObject\CostDate;
 
 class CostFactory implements CostFactoryInterface
 {
-
-    public function create(int $userId, DateTimeImmutable $costDate, float $amount, string $comment): Cost
-    {
+    /**
+     * @param int $userId
+     * @param DateTimeImmutable $costDate
+     * @param float $amount
+     * @param string $comment
+     * @return Cost
+     */
+    public function create(
+        int $userId,
+        DateTimeImmutable
+        $costDate,
+        float $amount,
+        string $comment
+    ): Cost {
         return new Cost(
             $userId,
             new CostDate($costDate),

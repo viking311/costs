@@ -4,17 +4,26 @@ declare(strict_types=1);
 
 namespace Viking311\Costs\Infrastructure\Config;
 
-class Config
+readonly class Config
 {
-    public readonly string $telegramBotToken;
-    public readonly string $telegramBotApiUrl;
-    public readonly string $hookUrl;
-    public readonly string $dbConnection;
-    public readonly string $dbHost;
-    public readonly int $dbPort;
-    public readonly string $dbName;
-    public readonly string $dbUser;
-    public readonly string $dbPassword;
+    /** @var string */
+    public string $telegramBotToken;
+    /** @var string */
+    public string $telegramBotApiUrl;
+    /** @var string */
+    public string $hookUrl;
+    /** @var string */
+    public string $dbConnection;
+    /** @var string */
+    public string $dbHost;
+    /** @var int */
+    public int $dbPort;
+    /** @var string */
+    public string $dbName;
+    /** @var string */
+    public string $dbUser;
+    /** @var string */
+    public string $dbPassword;
 
     public function __construct()
     {
@@ -29,6 +38,11 @@ class Config
         $this->dbPassword = $this->env('DB_PASSWORD', '');
     }
 
+    /**
+     * @param string $key
+     * @param mixed $default
+     * @return mixed
+     */
     private function env(string $key, mixed $default = false): mixed
     {
         $value = getenv($key);

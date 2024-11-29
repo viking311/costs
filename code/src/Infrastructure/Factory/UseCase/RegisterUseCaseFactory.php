@@ -10,6 +10,9 @@ use Viking311\Costs\Infrastructure\Factory\UserRepositoryFactory;
 
 class RegisterUseCaseFactory
 {
+    /**
+     * @return RegisterUserUseCase
+     */
     public static function create(): RegisterUserUseCase
     {
         $userFactory = new UserFactory();

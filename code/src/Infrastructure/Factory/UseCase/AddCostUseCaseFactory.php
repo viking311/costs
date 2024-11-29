@@ -11,6 +11,9 @@ use Viking311\Costs\Infrastructure\Factory\UserRepositoryFactory;
 
 class AddCostUseCaseFactory
 {
+    /**
+     * @return AddCostUseCase
+     */
     public static function create(): AddCostUseCase
     {
         $userRepository = UserRepositoryFactory::create();

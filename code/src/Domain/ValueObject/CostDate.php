@@ -6,13 +6,19 @@ namespace Viking311\Costs\Domain\ValueObject;
 
 use DateTimeImmutable;
 
-class CostDate
+readonly class CostDate
 {
+    /**
+     * @param DateTimeImmutable $value
+     */
     public function __construct(
-        private readonly DateTimeImmutable $value
+        private DateTimeImmutable $value
     ) {
     }
 
+    /**
+     * @return DateTimeImmutable
+     */
     public function getValue(): DateTimeImmutable
     {
         return $this->value;

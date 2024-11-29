@@ -6,7 +6,7 @@ namespace Viking311\Costs\Domain\ValueObject;
 
 use InvalidArgumentException;
 
-class UserName
+readonly class UserName
 {
     /**
      * @param string $value
@@ -14,7 +14,7 @@ class UserName
      * @throw InvalidArgumentException
      */
     public function __construct(
-        private readonly string $value
+        private string $value
     )
     {
         if (empty($this->value)) {

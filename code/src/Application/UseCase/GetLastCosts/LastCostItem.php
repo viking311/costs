@@ -4,12 +4,17 @@ declare(strict_types=1);
 
 namespace Viking311\Costs\Application\UseCase\GetLastCosts;
 
-class LastCostItem
+readonly class LastCostItem
 {
+    /**
+     * @param string $costDate
+     * @param float $amount
+     * @param string $comment
+     */
     public function __construct(
-        public readonly string $costDate,
-        public readonly float $amount,
-        public readonly string $comment
-    ){
+        public string $costDate,
+        public float  $amount,
+        public string $comment
+    ) {
     }
 }

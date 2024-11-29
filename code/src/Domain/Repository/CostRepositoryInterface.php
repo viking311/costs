@@ -16,5 +16,11 @@ interface CostRepositoryInterface
      */
     public function getCostsByUserId(int $userId, string $sort = 'ASC',  int $limit = 0): array;
 
-    public function save(Cost $cost);
+    /**
+     * @param Cost $cost
+     * @return void
+     *
+     * @throws RepositoryException
+     */
+    public function save(Cost $cost): void;
 }

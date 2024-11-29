@@ -6,17 +6,22 @@ namespace Viking311\Costs\Domain\ValueObject;
 
 use InvalidArgumentException;
 
-class ChatId
+readonly class ChatId
 {
+    /**
+     * @param int $value
+     */
     public function __construct(
-        private readonly int $value
-    )
-    {
+        private int $value
+    ) {
         if ($this->value == 0) {
             throw new InvalidArgumentException('ChatId cannot be zero');
         }
     }
 
+    /**
+     * @return int
+     */
     public function getValue(): int
     {
         return $this->value;

@@ -9,16 +9,22 @@ use Telegram\Bot\Commands\Command;
 
 class StartCommand extends Command
 {
+    /** @var string  */
     protected string $name = 'start';
+    /** @var array|string[]  */
     protected array $aliases = ['help',];
-    protected string $description = 'Start Command to get you started';
+    /** @var string  */
+    protected string $description = 'Start Command to get you information about exists commands';
 
+    /**
+     * @return void
+     */
     public function handle(): void
     {
         $username = $this->getUpdate()->getMessage()->from->username;
 
         $this->replyWithMessage([
-            'text' => "Hello {$username}! Welcome to our bot, Here are our available commands:"
+            'text' => "Hello $username! Welcome to our bot, Here are our available commands:"
         ]);
 
         $this->replyWithChatAction(['action' => Actions::TYPING]);

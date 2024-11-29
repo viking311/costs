@@ -10,6 +10,9 @@ use Viking311\Costs\Infrastructure\Factory\UserRepositoryFactory;
 
 class GetLastCostsUseCaseFactory
 {
+    /**
+     * @return GetLastCostsUseCase
+     */
     public static function create(): GetLastCostsUseCase
     {
         $userRepository = UserRepositoryFactory::create();

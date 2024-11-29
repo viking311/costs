@@ -9,6 +9,9 @@ use Viking311\Costs\Infrastructure\Repository\CostRepository;
 
 class CostRepositoryFactory
 {
+    /**
+     * @return CostRepositoryInterface
+     */
     public static function create(): CostRepositoryInterface
     {
         $pdo = PdoFactory::getPdo();

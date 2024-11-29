@@ -9,8 +9,12 @@ use Viking311\Costs\Infrastructure\Config\Config;
 
 class PdoFactory
 {
+    /** @var PDO|null  */
     private static ?PDO $pdo = null;
 
+    /**
+     * @return PDO
+     */
     public static function getPdo(): PDO
     {
         if (is_null(self::$pdo)) {

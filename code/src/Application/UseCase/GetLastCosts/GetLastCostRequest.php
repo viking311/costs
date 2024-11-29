@@ -4,12 +4,17 @@ declare(strict_types=1);
 
 namespace Viking311\Costs\Application\UseCase\GetLastCosts;
 
-class GetLastCostRequest
+readonly class GetLastCostRequest
 {
+    /**
+     * @param string $userName
+     * @param int $chatId
+     * @param int $count
+     */
     public function __construct(
-        public readonly string $userName,
-        public readonly int $chatId,
-        public readonly int $count
+        public string $userName,
+        public int    $chatId,
+        public int    $count
     ) {
     }
 }

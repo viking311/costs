@@ -11,16 +11,20 @@ use Viking311\Costs\Application\UseCase\RegisterUser\RegisterUserUseCase;
 
 class RegisterCommand extends Command
 {
-
+    /** @var string  */
     protected string $name = 'register';
+    /** @var array|string[]  */
     protected array $aliases = ['join'];
+    /** @var string  */
     protected string $description = 'Register user in bot';
 
+    /**
+     * @param RegisterUserUseCase $registerUserUseCase
+     */
     public function __construct(
         private readonly RegisterUserUseCase $registerUserUseCase
     ) {
     }
-
 
     /**
      * @inheritDoc

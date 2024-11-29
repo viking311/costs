@@ -9,6 +9,9 @@ use Viking311\Costs\Infrastructure\Repository\UserRepository;
 
 class UserRepositoryFactory
 {
+    /**
+     * @return UserRepositoryInterface
+     */
     public static function create(): UserRepositoryInterface
     {
         $pdo = PdoFactory::getPdo();

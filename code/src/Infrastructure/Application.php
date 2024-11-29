@@ -12,6 +12,9 @@ use Viking311\Costs\Infrastructure\Telegram\TelegramFactory;
 
 class Application
 {
+    /**
+     * @return void
+     */
     public function run(): void
     {
         $app = AppFactory::create();
@@ -23,9 +26,8 @@ class Application
         $app->post('/telegram/hook', function (RequestInterface $request, ResponseInterface $response) {
             try {
                 $telegram = TelegramFactory::createInstance();
-                $update = $telegram->commandsHandler(true);
-                file_put_contents('/tmp/test.txt', var_export($update, true));
-            } catch (Throwable $e) {
+                $telegram->commandsHandler(true);
+            } catch (Throwable) {
                 //TODO добавить тут логирование
             }
             return $response;

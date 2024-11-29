@@ -7,14 +7,22 @@ namespace Viking311\Costs\Application\UseCase\RegisterUser;
 use Viking311\Costs\Infrastructure\Factory\UserFactory;
 use Viking311\Costs\Infrastructure\Repository\UserRepository;
 
-class RegisterUserUseCase
+readonly class RegisterUserUseCase
 {
+    /**
+     * @param UserFactory $userFactory
+     * @param UserRepository $userRepository
+     */
     public function __construct(
-        private UserFactory $userFactory,
+        private UserFactory    $userFactory,
         private UserRepository $userRepository
     ) {
     }
 
+    /**
+     * @param RegisterUserRequest $request
+     * @return RegisterUserResponse
+     */
     public function __invoke(RegisterUserRequest $request): RegisterUserResponse
     {
         $user = $this->userRepository->getByUserNameAndChatId(

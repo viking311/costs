@@ -8,8 +8,12 @@ use Exception;
 use Viking311\Costs\Domain\Repository\CostRepositoryInterface;
 use Viking311\Costs\Domain\Repository\UserRepositoryInterface;
 
-class GetLastCostsUseCase
+readonly class GetLastCostsUseCase
 {
+    /**
+     * @param UserRepositoryInterface $userRepository
+     * @param CostRepositoryInterface $costRepository
+     */
     public function __construct(
         private UserRepositoryInterface $userRepository,
         private CostRepositoryInterface $costRepository
@@ -17,6 +21,8 @@ class GetLastCostsUseCase
     }
 
     /**
+     * @param GetLastCostRequest $request
+     * @return GetLastCostsResponse
      * @throws Exception
      */
     public function __invoke(GetLastCostRequest $request): GetLastCostsResponse
